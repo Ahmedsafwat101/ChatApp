@@ -22,14 +22,11 @@ public class App {
         }
 
         // 1. make server with given port
-        System.out.println(input.toString());
-        Server.setUpServerSocket(Integer.parseInt(input.get(0)));
-
-        // 2. receive command connect
+        Server.setUpServerSocket(Integer.parseInt(args[0].trim()));
 
         while (true) {
 
-            String receivedCommand = scanner.next();
+            String receivedCommand = scanner.nextLine();
             List<String> userInput = List.of(receivedCommand.split(" "));
 
             if (userInput.get(0).contains("**")) {
@@ -38,55 +35,45 @@ public class App {
                 break;
             }
 
-            System.out.println("lol");
-
-            while (!userInput.get(0).equalsIgnoreCase("con") && !isConnected) {
+            System.out.println(userInput);
+            String command =  userInput.get(0).trim();
+            while (!command.equals("con") && !isConnected) {
 
                 //Should be connected first before sending or replying
                 System.out.println("Should be connected first before sending or replying!");
 
-                if (userInput.get(0).equalsIgnoreCase("con")) {
+                receivedCommand = scanner.nextLine();
+                System.out.println(receivedCommand);
+                userInput = List.of(receivedCommand.split(" "));
+                if (userInput.get(0).equals("con")) {
                     isConnected = true;
                     break;
                 }
 
             }
-            //Note - > can't connect more than one client on the same port number
-            while (userInput.get(0).equalsIgnoreCase("con")) {
+            if (userInput.get(0).equals("con")) {
 
-                String host = userInput.get(1); // host
-                String port = userInput.get(2); //port
+                Client.setUpClientServer(userInput.get(1).trim(),Integer.parseInt(userInput.get(2).trim()));
+                Server.acceptConnection();
+                Client.initializeWriter();
+                Client.initializeClientReader();
+                Server.initializeClientReader();
+                Server.initializeWriter();
+                System.out.println("Client is connected ");
 
-                if (portsSet.contains(port)) {
-                    System.out.println("This port is busy, try another port ");
-
-                    receivedCommand = scanner.next();
-                    userInput = List.of(receivedCommand.split(" "));
-
-                } else {
-                    portsSet.add(port);
-
-                    Server.acceptConnection();
-                    Server.initializeClientReader();
-                    Server.initializeWriter();
-
-                    Client.setUpClientServer(host, Integer.parseInt(port));
-                    Client.initializeClientReader();
-                    Client.initializeWriter();
-                    System.out.println("Client is connected");
-                    break;
-                }
-            }
-            if (userInput.get(0).equals("send")) {
-                Client.sendMessage(userInput.subList(1, userInput.size()).toString());
+            } else if (userInput.get(0).equals("send")) {
+                Client.sendMessage(userInput.get(1));
+                System.out.println("Server received: "+Server.in.readLine());
 
             } else if (userInput.get(0).equals("reply")) {
-                Server.sendMessage(userInput.subList(1, userInput.size()).toString());
-            }else if(userInput.get(0).equals("close")){
+                Server.sendMessage(userInput.get(1));
+                System.out.println("Client received: "+Client.in.readLine());
+
+            } else if (userInput.get(0).equals("close")) {
                 System.out.println("Client is terminated");
                 Client.tearDownConnection();
                 break;
-            }else{
+            } else {
                 System.out.println("Invalid Command !");
             }
         }

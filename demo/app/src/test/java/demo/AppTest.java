@@ -12,7 +12,7 @@ class AppTest {
                 ()-> assertTrue(TestHelper.openPortWithSpecificIPAndPort("localhost", 8833)),
                 ()-> assertTrue(TestHelper.clientSendMessage("Client is here")),
                 ()-> assertTrue(TestHelper.serverReplyOnMessage("Ok")),
-                ()-> assertTrue(TestHelper.addNewClient("localhost", 8844))
+                ()-> assertTrue(TestHelper.addNewClient("localhost", 8833))
         );
     }
 }
