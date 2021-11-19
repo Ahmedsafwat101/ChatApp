@@ -1,5 +1,3 @@
-package com.company;
-
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.net.Socket;
@@ -7,7 +5,6 @@ import java.net.Socket;
 public class ServerClientThread extends Thread {
     Socket clientServer;
     int clientNo;
-    int square;
 
     public ServerClientThread(Socket clientServer, int clientNo) {
         this.clientNo = clientNo;
@@ -16,7 +13,7 @@ public class ServerClientThread extends Thread {
 
     public void run() {
         try {
-            //Input I could use buffer reader, but I choose to go with DataInputStream without converting to use the BufferedReader
+            //Input
             DataInputStream inStream = new DataInputStream(clientServer.getInputStream());
             //Output
             DataOutputStream outStream = new DataOutputStream(clientServer.getOutputStream());
@@ -28,7 +25,7 @@ public class ServerClientThread extends Thread {
 
                 System.out.println("Server: Received Message from "+clientNo+" is : "+ clientMessage);
 
-               // square = Integer.parseInt(clientMessage) * Integer.parseInt(clientMessage);
+                // square = Integer.parseInt(clientMessage) * Integer.parseInt(clientMessage);
                 serverMessage="From Server to Client-" + clientNo + " is "+ clientMessage ;
                 outStream.writeUTF(serverMessage);
                 outStream.flush();
@@ -41,7 +38,7 @@ public class ServerClientThread extends Thread {
             }catch (Exception e){
             System.out.println(e);
         }finally {
-            System.out.println("Client -" + clientNo + " exit!! ");
+            System.out.println("Client1 -" + clientNo + " exit!! ");
         }
     }
 }

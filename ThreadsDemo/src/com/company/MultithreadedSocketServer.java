@@ -17,9 +17,6 @@ public class MultithreadedSocketServer {
        // ServerSocket serverSocket = new ServerSocket(8888);
         ServerSocket serverSocket = new ServerSocket(Integer.parseInt(args[0].trim()));
 
-
-
-
         int counter = 0;
 
         //Handel User Input
@@ -27,42 +24,7 @@ public class MultithreadedSocketServer {
 
         System.out.println("TCP Server is started... ");
 
-        String clientMessage = "";
-
         while (true) {
-
-            //Take input from user
-           /*System.out.println("conn host port :");
-
-            clientMessage = br.readLine();
-            String[] clientInputArray = new String[3];
-            clientInputArray = clientMessage.split(" ");
-            System.out.println(clientMessage);
-
-
-            String[] finalClientInputArrayThread = clientInputArray;
-
-            Thread t1 = new Thread(() -> {
-                try {
-                    initializeServer(Integer.parseInt(finalClientInputArrayThread[2].trim()));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            });
-
-            Thread t2= new Thread(() -> {
-                try {
-                    TCPClientThread.runTCPClient(finalClientInputArrayThread[1].trim(),Integer.parseInt(finalClientInputArrayThread[2].trim()));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            });
-
-
-            t1.start();
-            t2.start();*/
-
-
             //Server accept client connection
             Socket clientServer = serverSocket.accept();
             counter++;

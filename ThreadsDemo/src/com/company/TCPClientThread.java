@@ -5,6 +5,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.net.Socket;
+import java.util.ArrayList;
 
 public class TCPClientThread {
     public static void main(String[] args) throws  Exception {
@@ -20,17 +21,25 @@ public class TCPClientThread {
 
         String clientMessage = "", serverMessage = "";
 
+
         while (!clientMessage.equals("bye")) {
+            System.out.println("Use command `Send + Any Message` to send a message\n or Reply");
+            clientMessage= br.readLine();
+            String[] messageArray = clientMessage.split(" ");
+            if(messageArray[0].equals("Send")){
+                // send to server
+                outStream.writeUTF(messageArray[1]);
+                outStream.flush();
 
-            System.out.println("Enter number :");
-            clientMessage=br.readLine();
-            // send to server
-            outStream.writeUTF(clientMessage);
-            outStream.flush();
 
-            //Read from server
-            serverMessage=inStream.readUTF();
-            System.out.println(serverMessage);
+            }
+            else if(messageArray[0].equals("Reply")){
+                //Read from server
+                serverMessage=inStream.readUTF();
+                System.out.println(serverMessage);
+            }
+
+
         }
         outStream.close();
         outStream.close();

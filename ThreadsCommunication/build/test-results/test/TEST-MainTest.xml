@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="MainTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-11-19T15:02:45" hostname="DESKTOP-NUAJB18" time="0.032">
+  <properties/>
+  <testcase name="test()" classname="MainTest" time="0.032"/>
+  <system-out><![CDATA[8899
+8877
+8899
+8833
+8866
+TCP Server is started... 
+TCP Server is started... 
+TCP Server is started... 
+TCP Server is started... 
+Use command `Send + Any Message` to send a message
+ or Reply
+Use command `Send + Any Message` to send a message
+ or Reply
+Use command `Send + Any Message` to send a message
+ or Reply
+Use command `Send + Any Message` to send a message
+ or Reply
+Use command `Send + Any Message` to send a message
+ or Reply
+Client 1 is connected...
+Client 1 is connected...
+Client 1 is connected...
+Client 1 is connected...
+Client 2 is connected...
+]]></system-out>
+  <system-err><![CDATA[java.net.BindException: Address already in use: NET_Bind
+	at java.base/java.net.PlainSocketImpl.bind0(Native Method)
+	at java.base/java.net.PlainSocketImpl.socketBind(PlainSocketImpl.java:132)
+	at java.base/java.net.AbstractPlainSocketImpl.bind(AbstractPlainSocketImpl.java:436)
+	at java.base/java.net.ServerSocket.bind(ServerSocket.java:381)
+	at java.base/java.net.ServerSocket.<init>(ServerSocket.java:243)
+	at java.base/java.net.ServerSocket.<init>(ServerSocket.java:135)
+	at MultithreadedSocketServer.main(MultithreadedSocketServer.java:12)
+	at TestHelper.lambda$setUp$0(TestHelper.java:47)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+]]></system-err>
+</testsuite>
