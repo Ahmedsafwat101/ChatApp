@@ -16,12 +16,12 @@ public class MultithreadedSocketServer {
 
         //Handel User Input
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        System.out.println("TCP Server is started... ");
+        System.out.println("TCP ServerHelper is started... ");
         String clientMessage = "";
 
         while (true) {
 
-            //Server accept client connection
+            //ServerHelper accept client connection
             Socket clientServer = serverSocket.accept();
             counter++;
             System.out.println("Client " + counter + " is connected...");

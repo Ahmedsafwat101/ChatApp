@@ -10,9 +10,9 @@ public class Client {
         PrintWriter out;
         BufferedReader in;
 
-        Client1.setUpClientServer("127.0.0.1", 8888);
+        ClientHelper.setUpClientServer("127.0.0.1", 8888);
         //clientSocket = new Socket("127.0.0.1", 8888);
-        Client1.initializeWriter();
+        ClientHelper.initializeWriter();
        // out = new PrintWriter(clientSocket.getOutputStream());
         //Reading from KeyBoard
         in = new BufferedReader(new InputStreamReader(System.in));
@@ -20,7 +20,7 @@ public class Client {
         while (true) {
 
             sendMessage = in.readLine();  // keyboard reading
-            Client1.sendMessage(sendMessage);
+            ClientHelper.sendMessage(sendMessage);
            // out.println(sendMessage);       // sending to server
             //out.flush();                    // flush the
         }

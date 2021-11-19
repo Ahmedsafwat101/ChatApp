@@ -1,6 +1,5 @@
 
 import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.*;
@@ -17,7 +16,7 @@ public class Main {
             input.add(arg);
         }
 
-        //My Server
+        //My ServerHelper
         ServerSocket serverSocket;
         Socket clientSocket;
         BufferedReader in;
@@ -27,16 +26,16 @@ public class Main {
 
         System.out.printf("here");
 
-        Server.setUpServerSocket(8888); // new
+        ServerHelper.setUpServerSocket(8888); // new
 
         //serverSocket = new ServerSocket(8888);
 
-        Server.acceptConnection(); // new
+        ServerHelper.acceptConnection(); // new
 
        // clientSocket = serverSocket.accept();
 
-        Server.initializeServerReader();  // new
-        Server.initializeServerWriter(); //new
+        ServerHelper.initializeServerReader();  // new
+        ServerHelper.initializeServerWriter(); //new
 
        // in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
@@ -44,13 +43,13 @@ public class Main {
         String msgReceived;
 
         while (true) {
-            if ((msgReceived = Server.in.readLine()) != null) {
+            if ((msgReceived = ServerHelper.in.readLine()) != null) {
 
                 System.out.printf(msgReceived);
                 String arr[] = new String[3];
                 arr = msgReceived.split(" ");
                 if (msgReceived.equals("**")) { //terminate
-                    System.out.println("Client1 closed the channel ");
+                    System.out.println("ClientHelper closed the channel ");
                     break;
                 } else if ((arr[0].trim()).equals("con")) {
                     System.out.println("Client is connected " + arr[0] + arr[1]);
@@ -85,7 +84,7 @@ public class Main {
 
         }
         //Close the Socket
-        Server.tearDownConnection();
+        ServerHelper.tearDownConnection();
         //clientSocket.close();
         //serverSocket.close();
     }

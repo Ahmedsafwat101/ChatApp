@@ -3,35 +3,35 @@ import java.util.HashSet;
 
 public class TestHelper {
     public static boolean openPortWithSpecificIPAndPort(String ip, int port) throws IOException {
-        Server.setUpServerSocket(port);
-        Client1.setUpClientServer(ip, port);
-        Server.acceptConnection();
-        Client1.initializeWriter();
-        Server.initializeServerReader();
-        Server.initializeServerWriter();
-        Client1.initializeClientReader();
+        ServerHelper.setUpServerSocket(port);
+        ClientHelper.setUpClientServer(ip, port);
+        ServerHelper.acceptConnection();
+        ClientHelper.initializeWriter();
+        ServerHelper.initializeServerReader();
+        ServerHelper.initializeServerWriter();
+        ClientHelper.initializeClientReader();
 
         return true;
     }
 
     public static boolean  clientSendMessage(String msg) throws IOException {
-        Client1.sendMessage(msg);
-        return msg.equals(Server.in.readLine());
+        ClientHelper.sendMessage(msg);
+        return msg.equals(ServerHelper.in.readLine());
     }
 
     public static boolean serverReplyOnMessage(String msg) throws IOException {
-        Server.sendMessage(msg);
-        return msg.equals(Client1.in.readLine());
+        ServerHelper.sendMessage(msg);
+        return msg.equals(ClientHelper.in.readLine());
     }
 
     public static boolean closeConnection() throws IOException {
-        Client1.tearDownConnection();
-        Server.tearDownConnection();
+        ClientHelper.tearDownConnection();
+        ServerHelper.tearDownConnection();
         return true;
     }
     public static boolean addNewClient(String ip, int port) throws IOException {
-        Client1.tearDownConnection();
-        Client1.setUpClientServer(ip, port);
+        ClientHelper.tearDownConnection();
+        ClientHelper.setUpClientServer(ip, port);
         return true;
     }
 

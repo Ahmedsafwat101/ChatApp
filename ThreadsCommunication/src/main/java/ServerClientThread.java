@@ -23,10 +23,10 @@ public class ServerClientThread extends Thread {
             while(!clientMessage.equals("bye")) {
                 clientMessage=inStream.readUTF();
 
-                System.out.println("Server: Received Message from "+clientNo+" is : "+ clientMessage);
+                System.out.println("ServerHelper: Received Message from "+clientNo+" is : "+ clientMessage);
 
                 // square = Integer.parseInt(clientMessage) * Integer.parseInt(clientMessage);
-                serverMessage="From Server to Client-" + clientNo + " is "+ clientMessage ;
+                serverMessage="From ServerHelper to Client-" + clientNo + " is "+ clientMessage ;
                 outStream.writeUTF(serverMessage);
                 outStream.flush();
             }
@@ -38,7 +38,7 @@ public class ServerClientThread extends Thread {
             }catch (Exception e){
             System.out.println(e);
         }finally {
-            System.out.println("Client1 -" + clientNo + " exit!! ");
+            System.out.println("ClientHelper -" + clientNo + " exit!! ");
         }
     }
 }
